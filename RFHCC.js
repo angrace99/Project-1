@@ -1,6 +1,6 @@
 /**
  *   @author Withey, Anna (witheya@student.ncmich.edu)
- *   @version 0.0.1
+ *   @version 0.0.2
  *   @summary River Falls Homes Construction Company
  *   @todo Nothing
  */
@@ -10,7 +10,7 @@ const PROMPT = require('readline-sync');
 
 let lotNumber, bedroomPrice, bathroomPrice, garagePrice;
 let grandTotal;
-const baseHomePrice = 50000, pricePerBedroom = 17000, pricePerBathroom = 12500, pricePerCar = 6000;
+const BASEHOMEPRICE = 50000, PRICEPERBEDROOM = 17000, PRICEPERBATHROOM = 12500, PRICEPERCAR = 6000;
 
 function main() {
     findLotNumber();
@@ -18,50 +18,54 @@ function main() {
     calcBathroomPrice();
     calcGaragePrice();
     calcHomeTotal();
-    console.log(`\nYour grand total for lot number ${lotNumber} is: ${grandTotal}`);
 }
 
 main();
 
 function findLotNumber() {
-    lotNumber = PROMPT.question(`\nPlease enter your lot number: `);
-    if (typeof lotNumber != 'number') {
-        lotNumber = PROMPT.question('Please enter a valid lot number: ');
+    if (! lotNumber) {
+        lotNumber = Number(PROMPT.question('\nPlease enter your lot number: '));
+        while (isNaN(parseInt(lotNumber))) {
+            lotNumber = Number(PROMPT.question('\nPlease enter a valid lot number: '));
+        }
     }
-    return lotNumber;
 }
 
 function calcBedroomPrice() {
     let numBedroom;
-    numBedroom = PROMPT.question(`\nPlease enter the desired number of bedrooms: `);
-    if (typeof numBedroom != 'number') {
-        numBedroom = PROMPT.question('Please enter a valid number of bedrooms: ');
+    if (! numBedroom) {
+        numBedroom = Number(PROMPT.question('\nPlease enter the desired number of bedrooms: '));
+        while (isNaN(parseInt(numBedroom))) {
+            numBedroom = Number(PROMPT.question('\nPlease enter a valid number of bedrooms: '));
+        }
     }
-    bedroomPrice = numBedroom * pricePerBedroom;
-    return bedroomPrice;
+    bedroomPrice = numBedroom * PRICEPERBEDROOM;
 }
 
 function calcBathroomPrice() {
     let numBathroom;
-    numBathroom = PROMPT.question(`\nPlease enter the desired number of bathrooms: `);
-    if (typeof numBathroom != 'number') {
-        numBathroom = PROMPT.question('Please enter a valid number of bathrooms: ');
+    if (! numBathroom) {
+        numBathroom = Number(PROMPT.question('\nPlease enter the desired number of bathrooms: '));
+        while (isNaN(parseInt(numBathroom))) {
+            numBathroom = Number(PROMPT.question('\nPlease enter a valid number of bathrooms: '));
+        }
     }
-    bathroomPrice = numBathroom * pricePerBathroom;
-    return bathroomPrice;
+    bathroomPrice = numBathroom * PRICEPERBATHROOM;
 }
 
 function calcGaragePrice() {
     let numCar;
-    numCar = PROMPT.question('\nPlease enter the size of your garage up to 3 cars: ');
-    if (typeof numCar != 'number'&& numCar > 4) {
-        numCar = PROMPT.question('Please enter a valid number of cars: ');
+    let maxNumberCar = 4;
+    if (! numCar) {
+        numCar = Number(PROMPT.question('\nPlease enter the size of your garage by number of cars: '));
+        while (isNaN(parseInt(numCar))) {
+                numCar = Number(PROMPT.question('\nPlease enter a valid number of cars: '));
+        }
     }
-    garagePrice = numCar * pricePerCar;
-    return garagePrice;
+    garagePrice = numCar * PRICEPERCAR;
 }
 
 function calcHomeTotal() {
-    grandTotal = bedroomPrice + bathroomPrice + garagePrice + baseHomePrice;
-    return grandTotal;
+    grandTotal = bedroomPrice + bathroomPrice + garagePrice + BASEHOMEPRICE;
+    console.log(`\nYour grand total for lot number ${lotNumber} is: ${grandTotal}`);
 }
