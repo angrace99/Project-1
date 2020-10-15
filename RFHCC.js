@@ -55,10 +55,10 @@ function calcBathroomPrice() {
 
 function calcGaragePrice() {
     let numCar;
-    let maxNumberCar = 4;
+    let maxNumberCars = 4;
     if (! numCar) {
         numCar = Number(PROMPT.question('\nPlease enter the size of your garage by number of cars: '));
-        while (isNaN(parseInt(numCar))) {
+        while (isNaN(parseInt(numCar)) || numCar > maxNumberCars) {
                 numCar = Number(PROMPT.question('\nPlease enter a valid number of cars: '));
         }
     }
