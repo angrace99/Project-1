@@ -10,7 +10,7 @@ const PROMPT = require('readline-sync');
 
 let lotNumber, bedroomPrice, bathroomPrice, garagePrice;
 let grandTotal;
-const BASEHOMEPRICE = 50000, PRICEPERBEDROOM = 17000, PRICEPERBATHROOM = 12500, PRICEPERCAR = 6000;
+const BASE_HOME_PRICE = 50000, PRICE_PER_BEDROOM = 17000, PRICE_PER_BATHROOM = 12500, PRICE_PER_CAR = 6000;
 
 function main() {
     findLotNumber();
@@ -55,10 +55,10 @@ function calcBathroomPrice() {
 
 function calcGaragePrice() {
     let numCar;
-    let maxNumberCars = 4;
+    const MAX_NUM_CARS = 4;
     if (! numCar) {
         numCar = Number(PROMPT.question('\nPlease enter the size of your garage by number of cars: '));
-        while (isNaN(parseInt(numCar)) || numCar > maxNumberCars) {
+        while (isNaN(parseInt(numCar)) || numCar > MAX_NUM_CARS) {
                 numCar = Number(PROMPT.question('\nPlease enter a valid number of cars: '));
         }
     }
