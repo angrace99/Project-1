@@ -1,6 +1,6 @@
 /**
  *   @author Withey, Anna (witheya@student.ncmich.edu)
- *   @version 0.0.2
+ *   @version 0.0.3
  *   @summary River Falls Homes Construction Company
  *   @todo Nothing
  */
@@ -39,7 +39,7 @@ function calcBedroomPrice() {
             numBedroom = Number(PROMPT.question('\nPlease enter a valid number of bedrooms: '));
         }
     }
-    bedroomPrice = numBedroom * PRICEPERBEDROOM;
+    bedroomPrice = numBedroom * PRICE_PER_BEDROOM;
 }
 
 function calcBathroomPrice() {
@@ -50,7 +50,7 @@ function calcBathroomPrice() {
             numBathroom = Number(PROMPT.question('\nPlease enter a valid number of bathrooms: '));
         }
     }
-    bathroomPrice = numBathroom * PRICEPERBATHROOM;
+    bathroomPrice = numBathroom * PRICE_PER_BATHROOM;
 }
 
 function calcGaragePrice() {
@@ -62,10 +62,10 @@ function calcGaragePrice() {
                 numCar = Number(PROMPT.question('\nPlease enter a valid number of cars: '));
         }
     }
-    garagePrice = numCar * PRICEPERCAR;
+    garagePrice = numCar * PRICE_PER_CAR;
 }
 
 function calcHomeTotal() {
-    grandTotal = bedroomPrice + bathroomPrice + garagePrice + BASEHOMEPRICE;
+    grandTotal = bedroomPrice + bathroomPrice + garagePrice + BASE_HOME_PRICE;
     console.log(`\nYour grand total for lot number ${lotNumber} is: ${grandTotal}`);
 }
